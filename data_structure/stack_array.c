@@ -20,6 +20,7 @@ output value
 4
 1
 */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
