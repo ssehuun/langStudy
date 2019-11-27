@@ -1,4 +1,4 @@
-//1722 - runtime error
+//1722 - output answer ok, but runtime error
 #include <cstdio>
 #include <algorithm>
 #include <vector>
