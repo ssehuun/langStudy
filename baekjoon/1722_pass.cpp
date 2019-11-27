@@ -1,4 +1,4 @@
-// pass
+// pass, ref-https://wjdgus2951.tistory.com/66
 #include <cstdio>
 #include <vector>
 using namespace std;
