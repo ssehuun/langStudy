@@ -3,59 +3,59 @@ using namespace std;
 
 typedef struct Node{
 	int data;
-	Node* nextNode;
-	Node(){data = 0; nextNode = nullptr;}
+	Node *nextNode;
+	Node *prevNode;
+	Node(){data = 0; nextNode = nullptr; prevNode = nullptr;}
 }Node;
 
 typedef struct List{
 	int size;
-	Node* front;
-	Node* back;
+	Node *front;
+	Node *back;
 	List(){size = 0; front = nullptr; back = nullptr;}
-}SingleList;
+}DoubleList;
 
-void push_front(SingleList &list, int num)
+void push_front(DoubleList &list, int num)
 {
 	cout << "push front!!!" << endl;
 	Node* newNode = new Node[1];
 	newNode->data = num;
-	//newNode->nextNode = nullptr;
+
 	if(list.size == 0){
 		list.front = newNode;
 		list.back = newNode;
-	}
-	else{
+	}else{
 		newNode->nextNode = list.front;
+		list.front->prevNode = newNode;
 		list.front = newNode;
 	}
 	list.size++;
 }
 
-void push_back(SingleList &list, int num)
+void push_back(DoubleList &list, int num)
 {
 	Node* newNode = new Node[1];//not dynamic, static?
 	newNode->data = num;
-	//newNode->nextNode = nullptr;
+
 	if(list.size == 0){
 		list.front = newNode;
 		list.back = newNode;
-	}
-	else{
+	}else{
 		list.back->nextNode = newNode;
+		newNode->prevNode = list.back;
 		list.back = newNode;
 	}
 	list.size++;
 }
 
-void pop_front(SingleList &list)
+void pop_front(DoubleList &list)
 {
 	cout << "pop front element" << endl;
 	if(list.size == 1){
 		free(list.front);
 		list.front = nullptr;
 		list.back = nullptr;
-	}
-	else{
+	}else{
 		Node *tmp = list.front;
 		list.front = list.front->nextNode;
 		free(tmp);
@@ -63,7 +63,7 @@ void pop_front(SingleList &list)
 	list.size--;
 }
 
-void pop_back(SingleList &list)
+void pop_back(DoubleList &list)
 {
 	cout << "pop back element" << endl;
 	if(list.size == 1){
@@ -71,17 +71,14 @@ void pop_back(SingleList &list)
 		list.front = nullptr;
 		list.back = nullptr;
 	}else{
-		for(Node* it = list.front; it != nullptr; it = it->nextNode){
-			if(it->nextNode->nextNode == nullptr){
-				list.back = it;
-				it->nextNode = nullptr;
-				break;
-			}
-		}
+		Node *tmp = list.back;
+		list.back = list.back->prevNode;
+		list.back->nextNode = nullptr;
+		free(tmp); 
 	}
 	list.size--;
 }
-void erase(SingleList &list, Node* prevNode, Node* curNode)
+void erase(DoubleList &list, Node* prevNode, Node* curNode)
 {
 	cout << "erase element!!!" << endl;
 	if(prevNode == nullptr)
@@ -96,7 +93,7 @@ void erase(SingleList &list, Node* prevNode, Node* curNode)
 		free(curNode);
 	}
 }
-void insert(SingleList &list, Node *curNode, int data)
+void insert(DoubleList &list, Node *curNode, int data)
 {
 	cout << "insert element!!!" << endl;
 	Node *newNode = new Node[1];
@@ -105,15 +102,15 @@ void insert(SingleList &list, Node *curNode, int data)
 	curNode->nextNode = newNode;
 	list.size++;
 }
-void printList(SingleList list)
+void printList(DoubleList list)
 {
 	cout << "print All elements: " << endl;
-	for(Node* it = list.front; it != nullptr; it = it->nextNode){
+	for(Node *it = list.front; it != nullptr; it = it->nextNode){
 		cout << it->data << " ";
 	}
 	cout << endl;
 }
-void clear(SingleList &list)
+void clear(DoubleList &list)
 {
 	while(list.size != 0){
 		pop_front(list);
@@ -121,42 +118,42 @@ void clear(SingleList &list)
 }
 int main(){
 	int size = 10;
-	SingleList singleList;
+	DoubleList doubleList;
 	for(int i = 0; i < size; i++){
-		push_back(singleList, i);
+		push_back(doubleList, i);
 	}
-	printList(singleList);
+	printList(doubleList);
 
-	push_front(singleList, 100);
-	printList(singleList);
+	push_front(doubleList, 100);
+	printList(doubleList);
 
-	pop_front(singleList);
-	printList(singleList);
+	pop_front(doubleList);
+	printList(doubleList);
 
-	pop_back(singleList);
-	printList(singleList);
+	pop_back(doubleList);
+	printList(doubleList);
 	//erase element
 	int deleteElement = 5;
 	cout << "erase element: " << deleteElement << endl;
 	Node *prevNode = nullptr;
-	for(Node *it = singleList.front; it != nullptr; it = it->nextNode){
+	for(Node *it = doubleList.front; it != nullptr; it = it->nextNode){
 		if(it->data == deleteElement)
 		{
-			erase(singleList, prevNode, it);
+			erase(doubleList, prevNode, it);
 			break;
 		}
 		prevNode = it;
 	}
-	printList(singleList);
+	printList(doubleList);
 	//insert element
 	int data = 11;
 	int insertElement = 6;
 	cout << "insert " << data << " after " << insertElement << endl;
-	for(Node *it = singleList.front; it != nullptr; it = it->nextNode){
+	for(Node *it = doubleList.front; it != nullptr; it = it->nextNode){
 		if(it->data == insertElement){
-			insert(singleList, it, data);
+			insert(doubleList, it, data);
 		}
 	}
-	printList(singleList);
+	printList(doubleList);
 	return 0;
 }
