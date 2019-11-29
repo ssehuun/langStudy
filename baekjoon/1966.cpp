@@ -7,26 +7,38 @@ int main(){
 	std::cin >> tc;
 	while(tc--){
 		std::cin >> N >> M;
-		std::deque<int> dq(N);
-
-		for(int i=0; i<N; i++){
-			std::cin >> dq[i];
+		std::deque<int> dq;
+		//dq[0] = 1;
+		int tmp;
+		for(int i=0; i<N; i++){	
+			std::cin >> tmp;
+			dq.push_back(tmp);
 		}
+		for(int i=0; i<N; i++){
+			std::cout << dq[i];
+		}
+		
 		int chk_idx = M;
 		int chk_num = dq[M];
-
+		int ans = 0;
 		while(true){
-			int ans = 0;
-			auto biggest = std::max_element(dq.begin(), dq.end();
-			//std::cout << *biggest;
-			if(chk_num == biggest && dq.at(chk_num) == 0){
-				std::cout << ans << endl;
-				dq.push(dq[0]);
+			auto biggest = std::max_element(dq.begin(), dq.end());
+			//if(chk_num == *biggest && chk_num == dq.front()){
+			//	ans += 1;
+			//	break;
+			//}
+			if(dq[0] == *biggest){
+				ans += 1;
+				std::cout << dq.front();
 				dq.pop_front();
-			}else{
-				
+			}
+			else{
+				dq.push_back(dq[0]);
+				dq.pop_front();
+				ans += 1;
 			}
 		}
+		std::cout << ans << std::endl;
 	}
 	return 0;
 }
