@@ -1,4 +1,4 @@
-// 수 정렬하기 - 난이도 1
+// 수 정렬하기2 - 난이도 1
 #include <cstdio>
 #include <vector>
 #include <algorithm>
