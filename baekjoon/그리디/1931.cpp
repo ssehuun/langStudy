@@ -1,3 +1,8 @@
+/*
+https://www.acmicpc.net/problem/1931
+접근법 - 회의실 끝나는 시각으로 정렬을 하기전에 빠른 시작 시간대로 정렬을 먼저 한 뒤에 해야
+처음부터 회의가 끝나는 시각 이후 우선 순위별로 찾아나갈 수 있다.
+*/
 #include <cstdio>
 #include <vector>
 #include <utility>
