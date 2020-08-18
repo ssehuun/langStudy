@@ -12,6 +12,27 @@ https://www.acmicpc.net/problem/10610
 #include <algorithm>
 using namespace std;
 
+/* 런타임 에러난 풀이
+int main(void){
+	int max_num = 0;
+	string N;
+	cin >> N;
+
+	sort(N.begin(), N.end(), greater<int>());
+	
+	do {
+		max_num = stoi(N); // 10만개의 문자를 정수로 바꾸면서 run time error
+		if (max_num % 30 == 0) {
+			break;
+		}
+		else {
+			max_num = -1;
+		}
+	} while (prev_permutation(N.begin(), N.end())); // 순회 하는것도 run time error에 영향
+	cout << max_num;
+	return 0;
+}
+*/
 int main(void){
 	int max_num = 0;
 	int each_sum = 0;
