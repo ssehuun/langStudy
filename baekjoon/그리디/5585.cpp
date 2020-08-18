@@ -1,3 +1,6 @@
+/*
+https://www.acmicpc.net/problem/5585
+*/
 #include <cstdio>
 #include <vector>
 using namespace std;
