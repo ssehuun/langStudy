@@ -1,4 +1,7 @@
-//https://www.acmicpc.net/problem/5585
+/*
+https://www.acmicpc.net/problem/11047
+접근법 - 전형적인 그리디 알고리즘, 단위가 큰 동전부터 차례로 개수를 구한다.
+*/
 #include <cstdio>
 
 int main()
