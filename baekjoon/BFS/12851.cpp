@@ -3,6 +3,7 @@
 접근법 - 가장 빠른 시간을 찾는 문제라 BFS로 선택.
 하나의 배열 안에서 움직이기 때문에 visited 1차원 배열만 선언하고, visited 체크를 큐에 푸쉬하고 하는게 아니라 pop하고 한다.
 그 이유는 푸쉬를 하고 바로 visited 체크를 하게되면, 다른 경로에서 목적지까지 가는 경우를 확인 할 수 없기 때문.
+참고 - https://jaimemin.tistory.com/582?category=988050
 */
 #include <iostream>
 #include <queue>
