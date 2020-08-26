@@ -10,33 +10,30 @@
 #include <queue>
 using namespace std;
 
-const int MAX_N = 100000;
-int visited[MAX_N*2];
+const int MAX_N = 30+1;
+int visited[MAX_N*2]; // visited 배열 인덱스를 노드로 생각하고 값은 걸리는 시간으로 설정.
 
 int bfs(int cur, int end){
     queue<int> q;
     q.push(cur);
-    visited[cur] = 0;
     
     while (!q.empty()) {
         int here = q.front();
         q.pop();
-        
+        cout << here << ' '; 
         if(here == end){
             return visited[here];
         }
-        if(here-1 >= 0 && visited[here-1] == 0){
-// 현재 위치에서 한칸 아래로 움직일 때 0이상이고 미방문 상태일 때
-            visited[here-1] = visited[here]+1;
+//3가지 경우
+        if(here-1 >= 0 && visited[here-1] == 0){ // 현재 위치에서 한칸 아래로 움직일 때 0이상이고 미방문 상태일 때
+            visited[here-1] = visited[here]+1; // 방문 처리와 걸린 시간 입력을 동시에 처리, 이미 방문한 곳은 다시 큐에 넣지 않는다.
             q.push(here-1);
         }
-        if(here+1 <= MAX_N*2 && visited[here+1] == 0){
-// 현재 위치에서 한칸 위로 움직일 때 MAX_N*2 이하이고 미방문 상태일 때
+        if(here+1 < MAX_N && visited[here+1] == 0){ // 현재 위치에서 한칸 위로 움직일 때 MAX_N*2 이하이고 미방문 상태일 때
             visited[here+1] = visited[here]+1;
             q.push(here+1);
         }
-        if(here*2 <= MAX_N*2 && visited[here*2] == 0){
-// 현재 위치에서 2배 위로 움직일 때 MAX_N*2 이하이고 미방문 상태일 때
+        if(here*2 < MAX_N && visited[here*2] == 0){ // 현재 위치에서 2배 위로 움직일 때 MAX_N*2 이하이고 미방문 상태일 때
             visited[here*2] = visited[here]+1;
             q.push(here*2);
         }
