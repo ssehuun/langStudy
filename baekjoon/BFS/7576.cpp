@@ -6,7 +6,7 @@
 https://jdselectron.tistory.com/55    - 이 블로그가 훨씬 더 간단함, 방문 배열을 쓰지 않고 품.
 */
 #include <iostream>
-#include <utility> // std::pairㄹ
+#include <utility> // std::pair
 #include <cstdio>
 #include <queue>
 using namespace std;
