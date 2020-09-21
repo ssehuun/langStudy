@@ -29,7 +29,7 @@ int bfs(int cur, int end){
 			cnt++;
 		}
 		if(min_time == 0 && curLoc == end){ // 처음 목적지에 도달한 경우
-            min_time = curSec;
+        	min_time = curSec;
 			cnt++;
         }
 		if(curLoc-1 >= 0 && !visited[curLoc-1]){ // 현재 위치에서 한칸 아래로 움직일 때 0이상이고 첫방문일 때
@@ -40,10 +40,10 @@ int bfs(int cur, int end){
 			q.push(make_pair(curLoc+1, curSec+1));
 			//cout << "push: " << curLoc+1 << ' ' << curSec+1 << endl;
 		}
-        if(curLoc*2 < MAX_N && !visited[curLoc*2]){ // 현재 위치에서 2배 위로 움직일 때 MAX_N 보다 작고 미방문 상태일 때
+		if(curLoc*2 < MAX_N && !visited[curLoc*2]){ // 현재 위치에서 2배 위로 움직일 때 MAX_N 보다 작고 미방문 상태일 때
 			q.push(make_pair(curLoc*2, curSec+1));
 			//cout << "push: " << curLoc*2 << ' ' << curSec+1 << endl;
-        }
+		}
     }
 	return min_time;
 }
