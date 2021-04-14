@@ -21,6 +21,7 @@ string solution(vector<string> participant, vector<string> completion) {
     answer = participant[0];
     return answer;
 }
+
 /*
  * vector, sort 사용
  * sub_task - 100
@@ -42,6 +43,7 @@ string solution(vector<string> participant, vector<string> completion) {
     }
     return participant[participant.size()-1];
 }
+
 /*
  * vector, unordered_map 사용(문제의도)
  * sub_task - 100
