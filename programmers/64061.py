@@ -26,8 +26,8 @@ def solution(board, moves):
         li = [item[idx] for item in reversed(board) if item[idx] != 0]
         new_b.append(li)
 
-        stack = []
-        cnt = 0
+    stack = []
+    cnt = 0
     for i in moves: # 크레인의 위치 인덱스
         if len(new_b[i-1]) == 0:
             continue
