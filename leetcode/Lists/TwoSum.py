@@ -3,7 +3,7 @@ class Solution:
 
     # HashMap2 Solution
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-                hashmap = {}
+        hashmap = {}
         for i in range(len(nums)):
             complement = target - nums[i]
             if complement in hashmap:
@@ -14,13 +14,14 @@ class Solution:
 
 
     # HashMap Solution1
-    hashmap = {}
-    for i in range(len(nums)):
-        hashmap[nums[i]] = i
-    for i in range(len(nums)):
-        comp = target - nums[i]
-        if comp in hashmap and hashmap[comp] != i :
-            return [i, hashmap[comp]]
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashmap = {}
+        for i in range(len(nums)):
+            hashmap[nums[i]] = i
+        for i in range(len(nums)):
+            comp = target - nums[i]
+            if comp in hashmap and hashmap[comp] != i :
+                return [i, hashmap[comp]]
 
 
     # Brute Force Solution
