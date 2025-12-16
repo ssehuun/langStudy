@@ -10,6 +10,24 @@ Input2
 1 1 2 2 2 2 3
 Output2: -1
 """
+n, x = map(int, input().split())
+arr = list(map(int, input().split()))
+
+from bisect import bisect_left, bisect_right
+
+left_loc = bisect_left(arr, x)
+right_loc = bisect_right(arr, x)
+
+if right_loc-left_loc:
+  print(right_loc-left_loc)
+else:
+  print(-1)
+
+
+"""
+내가 짠 코드
+최악의 시간 복잡도: O(n^2)
+최선의 시간 복잡도: O(k*logn)
 
 def binary_search_while(array, target, start, end):
   print(f"array: {array}")
@@ -17,7 +35,7 @@ def binary_search_while(array, target, start, end):
     if start > end:
       break
     mid = (start + end) // 2
-    
+
     if array[mid] == target:
       return mid
 
@@ -27,13 +45,9 @@ def binary_search_while(array, target, start, end):
       start = mid + 1
   return None
 
-
-n, x = map(int, input().split())
-arr = list(map(int, input().split()))
-result = None
 cnt = 0
 
-while result is None:
+while True:
   n_len = len(arr)
   mid = binary_search_while(arr, x, 0, n_len - 1)
   print(f"mid : {mid}, arr : {arr}")
@@ -48,5 +62,4 @@ while result is None:
     else:
       print(-1)
       break
-
-
+"""
